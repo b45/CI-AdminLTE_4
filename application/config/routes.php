@@ -52,3 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['backend'] = 'backend/dashboard';
+$route['member/profile/(:num)'] = 'member/profile/$1';
+$route['message/read/(:num)'] = 'message/read/$1';
+$route['notification/read/(:num)'] = 'notification/read/$1';
+$route['task/read/(:num)'] = 'task/read/$1';
