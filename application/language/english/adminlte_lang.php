@@ -1,11 +1,11 @@
 <?php
 /**
- * @package	CodeIgniter
- * @author	Emmanuel CAMPAIT
- * @copyright	Copyright (c) 2013 - 2017, domProjects (https://domprojects.com)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://domprojects.com
- * @since	Version 1.0.0
+ * @package    CodeIgniter
+ * @author     Emmanuel CAMPAIT
+ * @copyright  Copyright (c) 2013 - 2018, domProjects (https://domprojects.com)
+ * @license    https://opensource.org/licenses/MIT
+ * @link       https://domprojects.com
+ * @since      Version 1.0.0
  * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -54,6 +54,7 @@ $lang['lang_member']                = 'Member';
 $lang['lang_message']               = 'Message';
 $lang['lang_notification']          = 'Notification';
 $lang['lang_task']                  = 'Task';
+$lang['lang_version']               = 'Version';
 
 /*
 | -------------------------------------------------------------------------
