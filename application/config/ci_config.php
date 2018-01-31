@@ -7,11 +7,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 |
 */
-$host_dev     = array('localhost', '127.0.0.1', '::1');
-$host_dev_dir = 'CI-AdminLTE_4';
-$host_prod    = 'your_domain.tld';
+$config['host_dev'] = array(
+	'localhost',
+	'127.0.0.1',
+	'::1'
+);
 
-$domain = (in_array($_SERVER['HTTP_HOST'], $host_dev, TRUE)) ? $_SERVER['HTTP_HOST'] . '/' . $host_dev_dir : $host_prod;
+$host_dev_dir = 'CI-AdminLTE_4';
+
+$host_prod = 'your_domain.tld';
+
+$domain = (in_array($_SERVER['HTTP_HOST'], $config['host_dev'], TRUE)) ? $_SERVER['HTTP_HOST'] . '/' . $host_dev_dir : $host_prod;
 
 $config['base_url'] = ( ! empty($_SERVER['HTTPS'])) ? 'https://' . $domain : 'http://' . $domain;
 
@@ -29,7 +35,7 @@ $config['index_page'] = '';
 | -------------------------------------------------------------------------
 |
 */
-$config['title']    = 'AdminLTE';
+$config['title'] = 'AdminLTE';
 $config['title_sm'] = '%sA%sLT';
 $config['title_lg'] = '%sAdmin%sLTE';
 
