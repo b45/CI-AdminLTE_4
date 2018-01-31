@@ -18,7 +18,7 @@ class Message extends Backend
 		//
 		$this->data['array_breadcrumbs'] = array(
 			$this->data['page_home']  => 'backend',
-			$this->data['page_title'] => 'backend/Message'
+			$this->data['page_title'] => 'backend/message'
 		);
 
 		//

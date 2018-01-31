@@ -29,10 +29,16 @@ $config['array_sidebar_menu'] = array(
 		)
 	),
 	'lang_various' => array(
-		'lang_version' => array(
-			'url'     => 'backend/version',
-			'router'  => 'version',
-			'icon'    => '<i class="fa fa fa-code-fork text-aqua" aria-hidden="true"></i>',
+		'lang_update' => array(
+			'url'     => 'backend/update',
+			'router'  => 'update',
+			'icon'    => '<i class="fa fa-refresh" aria-hidden="true"></i>',
+			'submenu' => FALSE
+		),
+		'lang_about' => array(
+			'url'     => 'backend/about',
+			'router'  => 'about',
+			'icon'    => '<i class="fa fa-question-circle-o" aria-hidden="true"></i>',
 			'submenu' => FALSE
 		),
 		'lang_documentation' => array(

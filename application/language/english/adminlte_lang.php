@@ -46,6 +46,7 @@ $lang['lang_main_navigation']       = 'Main navigation';
 $lang['lang_various']               = 'Various';
 
 // Menu
+$lang['lang_about']                 = 'About';
 $lang['lang_configuration']         = 'Configuration';
 $lang['lang_dashboard']             = 'Dashboard';
 $lang['lang_documentation']         = 'Documentation';
@@ -54,7 +55,7 @@ $lang['lang_member']                = 'Member';
 $lang['lang_message']               = 'Message';
 $lang['lang_notification']          = 'Notification';
 $lang['lang_task']                  = 'Task';
-$lang['lang_version']               = 'Version';
+$lang['lang_update']                = 'Update';
 
 /*
 | -------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Version extends Backend
+class About extends Backend
 {
 	public function __construct()
 	{
@@ -9,7 +9,7 @@ class Version extends Backend
 
 		//
 		$this->data['page_home']  = lang('lang_dashboard');
-		$this->data['page_title'] = lang('lang_version');
+		$this->data['page_title'] = lang('lang_about');
 	}
 
 
@@ -18,12 +18,12 @@ class Version extends Backend
 		//
 		$this->data['array_breadcrumbs'] = array(
 			$this->data['page_home']  => 'backend',
-			$this->data['page_title'] => 'backend/version'
+			$this->data['page_title'] => 'backend/about'
 		);
 
 		//
 		$this->data['content_header_title'] = content_header_title($this->data['page_title']);
-		$this->data['content'] = 'version';
+		$this->data['content'] = 'about';
 
 		//
 		$this->render();
