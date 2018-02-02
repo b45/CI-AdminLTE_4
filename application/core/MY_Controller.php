@@ -32,9 +32,10 @@ class Backend extends MY_Controller
         }
 
 		// Load ressource
+		$this->load->config('ci_elements');
 		$this->load->config('ci_sidebar_menu');
 		$this->load->library(array('breadcrumbs', 'sidebar_menu'));
-		$this->load->helper(array('adminlte'));
+		$this->load->helper(array('adminlte', 'common'));
 
 		// Load language file
 		$this->lang->load(array('adminlte'));

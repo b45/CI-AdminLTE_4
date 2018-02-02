@@ -1,12 +1,11 @@
 <?php
 /**
- * @package	CodeIgniter
- * @author	Emmanuel CAMPAIT
- * @copyright	Copyright (c) 2013 - 2017, domProjects (https://domprojects.com)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://domprojects.com
- * @since	Version 1.0.2
- * @filesource
+ * @package   CodeIgniter
+ * @author    Emmanuel CAMPAIT
+ * @copyright Copyright (c) 2013 - 2018, domProjects (https://domprojects.com)
+ * @license   http://opensource.org/licenses/MIT	MIT License
+ * @link      https://domprojects.com
+ * @since     Version 1.0.2
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -16,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
- * @category	HTML Tables
+ * @category	HTML Sidebar Menu
  * @author		Emmanuel CAMPAIT
  * @link		https://domprojects.com
  */
@@ -43,7 +42,7 @@ class Sidebar_menu
 			$this->template[$key] = $val;
 		}
 
-		log_message('info', 'Breadcrumbs Class Initialized');
+		log_message('info', 'Sidebar_menu Class Initialized');
 	}
 
 	// --------------------------------------------------------------------

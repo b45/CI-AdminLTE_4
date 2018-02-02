@@ -1,19 +1,17 @@
 <?php
 /**
- * @package	CodeIgniter
- * @author	Emmanuel CAMPAIT
- * @copyright	Copyright (c) 2013 - 2017, domProjects (https://domprojects.com)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://domprojects.com
- * @since	Version 1.0.0
- * @filesource
+ * @package   CodeIgniter
+ * @author    Emmanuel CAMPAIT
+ * @copyright Copyright (c) 2013 - 2018, domProjects (https://domprojects.com)
+ * @license   http://opensource.org/licenses/MIT	MIT License
+ * @link      https://domprojects.com
+ * @since     Version 1.0.0
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * HTML Breadcrumbs Generating Class
  *
- * Lets you create breadcrumbs manually.
  *
  * @package		CodeIgniter
  * @subpackage	Libraries
@@ -21,7 +19,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		Emmanuel CAMPAIT
  * @link		https://domprojects.com
  */
-
 class Breadcrumbs
 {
 	private $breadcrumbs = array();
