@@ -8,8 +8,9 @@ class MY_Controller extends CI_Controller
 		parent::__construct();
 
 		//
-		$this->load->config('ci_config');
+		$this->load->add_package_path(APPPATH . 'third_party/admin_lte/');
 		$this->load->add_package_path(APPPATH . 'third_party/ion_auth/');
+		$this->load->config('ci_config');
 		$this->load->library(array('ion_auth', 'parser'));
 		$this->load->helper(array('language', 'url'));
 	}
