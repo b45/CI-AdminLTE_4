@@ -95,14 +95,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<li class="dropdown user user-menu">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<img src="{picture_users}/_default.jpg" class="user-image" alt="default">
-					<span class="hidden-xs">{user_username}</span>
+					<span class="hidden-xs"><?php echo $user_login['username']; ?></span>
 				</a>
 				<ul class="dropdown-menu">
 					<li class="user-header">
 						<img src="{picture_users}/_default.jpg" class="img-circle" alt="default">
 						<p>
-							{user_fullname}
-							<small>Member since <?php echo date('F Y', $user_created_on); ?></small>
+							<?php echo $user_login['fullname']; ?>
+							<small>Member since <?php echo date('F Y', $user_login['created_on']); ?></small>
 						</p>
 					</li>
 					<li class="user-body">
@@ -120,7 +120,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</li>
 					<li class="user-footer">
 						<div class="pull-left">
-							<a href="<?php echo site_url('backend/member/profile/' . $user_id); ?>" class="btn btn-default btn-flat"><?php echo lang('lang_profile'); ?></a>
+							<a href="<?php echo site_url('backend/member/profile/' . $user_login['id']); ?>" class="btn btn-default btn-flat"><?php echo lang('lang_profile'); ?></a>
 						</div>
 						<div class="pull-right">
 							<a href="<?php echo site_url('auth/logout'); ?>" class="btn btn-default btn-flat"><?php echo lang('lang_sign_out'); ?></a>

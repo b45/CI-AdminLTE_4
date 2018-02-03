@@ -36,6 +36,7 @@ class Backend extends MY_Controller
 		$this->load->config('ci_sidebar_menu');
 		$this->load->library(array('breadcrumbs', 'sidebar_menu'));
 		$this->load->helper(array('adminlte', 'common'));
+		$this->load->model(array('user_model'));
 
 		// Load language file
 		$this->lang->load(array('adminlte'));
@@ -43,21 +44,9 @@ class Backend extends MY_Controller
 		// Define data array
 		$this->data = array();
 
-		//
-		$user = $this->ion_auth->user($this->ion_auth->user()->row()->id)->row();
-
-		$this->data['user_id']         = $user->id;
-		$this->data['user_email']      = $user->email;
-		$this->data['user_created_on'] = $user->created_on;
-		$this->data['user_lastlogin']  = ! empty($user->last_login) ? $user->last_login : NULL;
-		$this->data['user_username']   = ! empty($user->username) ? $user->username : NULL;
-		$this->data['user_firstname']  = ! empty($user->first_name) ? $user->first_name : NULL;
-		$this->data['user_lastname']   = ! empty($user->last_name) ? $user->last_name : NULL;
-		$this->data['user_fullname']   = $this->data['user_firstname'] . ' ' . $this->data['user_lastname'];
-		$this->data['user_company']    = ! empty($user->company) ? $user->company : NULL;
-		$this->data['user_phone']      = ! empty($user->phone) ? $user->phone : NULL;
-
-
+		// Get user login infos
+		$user_id = $this->ion_auth->user()->row()->id;
+		$this->data['user_login'] = $this->user_model->get_infos($user_id);
 
 		//
 		$this->data['title']    = $this->config->item('title');

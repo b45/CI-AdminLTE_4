@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<img src="{picture_users}/_default.jpg" class="img-circle" alt="default">
 		</div>
 		<div class="pull-left info">
-			<p>{user_fullname}</p>
+			<p><?php echo $user_login['fullname']; ?></p>
 			<a href="<?php echo site_url('backend/member/online'); ?>"><i class="fa fa-circle text-success"></i> <?php echo lang('lang_online'); ?></a>
 		</div>
 	</div>
