@@ -13,6 +13,16 @@ class MY_Controller extends CI_Controller
 		$this->load->config('ci_config');
 		$this->load->library(array('ion_auth', 'parser'));
 		$this->load->helper(array('language', 'url'));
+
+		//
+		$this->output->set_header('Cache-Control: public, max-age=0');
+		$this->output->set_header('Content-Type: text/html; charset=' . $this->config->item('charset'));
+		$this->output->set_header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT');
+		$this->output->set_header('Vary: Accept-Encoding');
+		$this->output->set_header('X-Content-Type-Options: nosniff');
+		$this->output->set_header('X-Frame-Options: DENY');
+		$this->output->set_header('X-Powered-By: domProjects');
+		$this->output->set_header('X-XSS-Protection: 1; mode=block');
 	}
 }
 
