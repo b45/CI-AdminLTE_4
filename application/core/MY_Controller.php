@@ -44,6 +44,21 @@ class Backend extends MY_Controller
 		// Define data array
 		$this->data = array();
 
+		//
+		if (in_array($_SERVER['HTTP_HOST'], $this->config->item('host_dev'), TRUE))
+		{
+			$source = 'internal';
+			$dns_prefetch = NULL;
+		}
+		else
+		{
+			$source = 'external';
+			$dns_prefetch = insert_link_tag($this->config->item('array_dns_prefetch'), $source, 'dns-prefetch');
+		}
+		$this->data['dns_prefetch'] = $dns_prefetch;
+		$this->data['stylesheet'] = insert_link_tag($this->config->item('array_stylesheet'), $source, 'stylesheet');
+		$this->data['javascript_body'] = insert_javascript($this->config->item('array_javascript_body'), $source);
+
 		// Get user login infos
 		$user_id = $this->ion_auth->user()->row()->id;
 		$this->data['user_login'] = $this->user_model->get_infos($user_id);

@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-if ( ! function_exists('insert_stylesheet'))
+if ( ! function_exists('insert_link_tag'))
 {
-	function insert_stylesheet($stylesheet = array(), $source = 'external')
+	function insert_link_tag($stylesheet = array(), $source = 'external', $rel = '')
 	{
 		$out = NULL;
 
@@ -16,15 +16,19 @@ if ( ! function_exists('insert_stylesheet'))
 				{
 					foreach ($src_val as $k)
 					{
-						$integrity   = ! empty($k['integrity']) ? ' integrity="' . $k['integrity'] . '"' : NULL;
-						$crossorigin = ! empty($k['crossorigin']) ? ' crossorigin="' . $k['crossorigin'] . '"' : NULL;
+						if (isset($k['url']))
+						{
+							$el_src = isset($k['src']) ? '/' . $k['src'] : NULL;
+							$el_href = $k['url'] . $el_src;
+							$integrity = isset($k['integrity']) ? ' integrity="' . $k['integrity'] . '"' : NULL;
+							$crossorigin = isset($k['crossorigin']) ? ' crossorigin="' . $k['crossorigin'] . '"' : NULL;
 
-						$out .= '<link rel="stylesheet" href="' . $k['url'] . '/' . $k['src'] . '"' . $integrity . $crossorigin . '>';
+							$out .= '<link rel="' . $rel . '" href="' . $el_href . '"' . $integrity . $crossorigin . '>'."\n";
+						}
 					}
 				}
 			}
 		}
-
 		return $out;
 	}
 }
@@ -50,12 +54,11 @@ if ( ! function_exists('insert_javascript'))
 						$integrity   = ! empty($k['integrity']) ? ' integrity="' . $k['integrity'] . '"' : NULL;
 						$crossorigin = ! empty($k['crossorigin']) ? ' crossorigin="' . $k['crossorigin'] . '"' : NULL;
 
-						$out .= '<script' . $async . $defer . ' src="' . $k['url'] . '/' . $k['src'] . '"' . $integrity . $crossorigin . '></script>';
+						$out .= '<script' . $async . $defer . ' src="' . $k['url'] . '/' . $k['src'] . '"' . $integrity . $crossorigin . '></script>'."\n";
 					}
 				}
 			}
 		}
-
 		return $out;
 	}
 }

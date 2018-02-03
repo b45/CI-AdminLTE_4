@@ -12,8 +12,8 @@ $config['array_stylesheet'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'font-awesome/css/font-awesome.min.css',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -26,8 +26,8 @@ $config['array_stylesheet'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'bootstrap/css/bootstrap.min.css',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -40,8 +40,8 @@ $config['array_stylesheet'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'adminlte/css/adminlte.min.css',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -54,8 +54,8 @@ $config['array_stylesheet'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'adminlte/css/skins/{theme}.min.css',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -68,8 +68,8 @@ $config['array_stylesheet'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'wysihtml5/wysihtml5.min.css',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -91,8 +91,8 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'jquery/jquery.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -105,8 +105,8 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'bootstrap/js/bootstrap.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -119,8 +119,8 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'slimscroll/slimscroll.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -133,8 +133,8 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'slimscroll/slimscroll.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -147,8 +147,8 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'fastclick/fastclick.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -161,8 +161,8 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'adminlte/js/adminlte.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -175,8 +175,8 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'wysihtml5/wysihtml5.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
@@ -189,14 +189,47 @@ $config['array_javascript_body'] = array(
 		'internal' => array(
 			'url'         => '{assets}',
 			'src'         => 'main.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
 		),
 		'external' => array(
 			'url'         => '{assets}',
 			'src'         => 'main.min.js',
-			'integrity'   => '',
-			'crossorigin' => ''
+			'integrity'   => NULL,
+			'crossorigin' => NULL
+		)
+	)
+);
+
+/*
+| -------------------------------------------------------------------------
+| Array dns-prefetch
+| -------------------------------------------------------------------------
+|
+*/
+$config['array_dns_prefetch'] = array(
+	'cloudflare' => array(
+		'internal' => array(
+
+		),
+		'external' => array(
+			'url' => 'https://cdnjs.cloudflare.com'
+		)
+	),
+	'googleapis' => array(
+		'internal' => array(
+
+		),
+		'external' => array(
+			'url' => 'https://fonts.googleapis.com'
+		)
+	),
+	'gstatic' => array(
+		'internal' => array(
+
+		),
+		'external' => array(
+			'url' => 'https://fonts.gstatic.com'
 		)
 	)
 );
