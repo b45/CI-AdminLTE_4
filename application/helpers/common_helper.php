@@ -32,9 +32,12 @@ if ( ! function_exists('insert_stylesheet'))
 
 if ( ! function_exists('insert_javascript'))
 {
-	function insert_javascript($javascript = array(), $source = 'external')
+	function insert_javascript($javascript = array(), $source = 'external', $async = FALSE, $defer = FALSE)
 	{
 		$out = NULL;
+
+		$async = $async ? ' async' : NULL;
+		$defer = $defer ? ' defer' : NULL;
 
 		foreach ($javascript as $elem => $elem_val)
 		{
@@ -47,7 +50,7 @@ if ( ! function_exists('insert_javascript'))
 						$integrity   = ! empty($k['integrity']) ? ' integrity="' . $k['integrity'] . '"' : NULL;
 						$crossorigin = ! empty($k['crossorigin']) ? ' crossorigin="' . $k['crossorigin'] . '"' : NULL;
 
-						$out .= '<script src="' . $k['url'] . '/' . $k['src'] . '"' . $integrity . $crossorigin . '></script>';
+						$out .= '<script' . $async . $defer . ' src="' . $k['url'] . '/' . $k['src'] . '"' . $integrity . $crossorigin . '></script>';
 					}
 				}
 			}

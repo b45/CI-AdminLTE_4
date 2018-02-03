@@ -71,7 +71,5 @@ $javascript_body = insert_javascript($this->config->item('array_javascript_body'
 		</div>
 
 		<?php echo $javascript_body; ?>
-
-		<script>$(function(){$('#compose-textarea').wysihtml5();});</script>
 	</body>
 </html>

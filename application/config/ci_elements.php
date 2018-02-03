@@ -184,5 +184,19 @@ $config['array_javascript_body'] = array(
 			'integrity'   => 'sha256-/pAqJaOZhKjDz1Ld/tOpZp7vnIOaMkkA5aawwwr0zfk=',
 			'crossorigin' => 'anonymous'
 		)
+	),
+	'main' => array(
+		'internal' => array(
+			'url'         => '{assets}',
+			'src'         => 'main.min.js',
+			'integrity'   => '',
+			'crossorigin' => ''
+		),
+		'external' => array(
+			'url'         => '{assets}',
+			'src'         => 'main.min.js',
+			'integrity'   => '',
+			'crossorigin' => ''
+		)
 	)
 );
