@@ -18,6 +18,9 @@ class MY_Controller extends CI_Controller
 		$this->load->config('ci_config');
 
 		//
+		$this->load->database();
+
+		//
 		$this->output->set_header('Cache-Control: public, max-age=0');
 		$this->output->set_header('Content-Type: text/html; charset=' . $this->config->item('charset'));
 		$this->output->set_header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT');
@@ -49,8 +52,8 @@ class Backend extends MY_Controller
 		$this->load->config('ci_elements');
 		$this->load->config('ci_sidebar_menu');
 		$this->load->library(array('breadcrumbs', 'sidebar_menu'));
-		$this->load->helper(array('adminlte', 'common'));
-		$this->load->model(array('user_model'));
+		$this->load->helper('adminlte');
+		$this->load->model('user_model');
 
 		// Load language file
 		$this->lang->load(array('adminlte'));
@@ -78,10 +81,10 @@ class Backend extends MY_Controller
 		$this->data['user_login'] = $this->user_model->get_infos($user_id);
 
 		//
+		$this->data['charset']  = $this->config->item('charset');
 		$this->data['title']    = $this->config->item('title');
 		$this->data['title_sm'] = $this->config->item('title_sm');
 		$this->data['title_lg'] = $this->config->item('title_lg');
-		$this->data['charset']  = $this->config->item('charset');
 		$this->data['assets']   = base_url($this->config->item('assets_backend'));
 		$this->data['theme']    = $this->config->item('theme_backend');
 		$this->data['picture_users'] = base_url($this->config->item('picture_users'));

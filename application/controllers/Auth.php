@@ -3,102 +3,113 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends MY_Controller
 {
-
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->database();
-		$this->load->library(array('ion_auth', 'form_validation'));
-		$this->load->helper(array('url', 'language'));
+
+		// Load ressource
+		$this->load->config('ci_elements');
+		$this->load->library(array('ion_auth'));
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
-	}
 
-	/**
-	 * Redirect if needed, otherwise display the user list
-	 */
-	public function index()
-	{
+		// Define data array
+		$this->data = array();
 
-		if (!$this->ion_auth->logged_in())
+		//
+		if (in_array($_SERVER['HTTP_HOST'], $this->config->item('host_dev'), TRUE))
 		{
-			// redirect them to the login page
-			redirect('auth/login', 'refresh');
-		}
-		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
-		{
-			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			$source = 'internal';
+			$dns_prefetch = NULL;
 		}
 		else
 		{
-			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$source = 'external';
+			$dns_prefetch = insert_link_tag($this->config->item('array_dns_prefetch'), $source, 'dns-prefetch');
+		}
+		$this->data['dns_prefetch'] = $dns_prefetch;
+		$this->data['stylesheet'] = insert_link_tag($this->config->item('array_stylesheet'), $source, 'stylesheet');
+		$this->data['javascript_body'] = insert_javascript($this->config->item('array_javascript_body'), $source);
 
-			//list the users
-			$this->data['users'] = $this->ion_auth->users()->result();
-			foreach ($this->data['users'] as $k => $user)
-			{
-				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-			}
+		//
+		$this->data['charset'] = $this->config->item('charset');
+		$this->data['title']   = $this->config->item('title');
+		$this->data['assets']  = base_url($this->config->item('assets_backend'));
+		$this->data['theme']   = $this->config->item('theme_backend');
+	}
 
-			$this->_render_page('auth/index', $this->data);
+
+	public function index()
+	{
+		if ( ! $this->ion_auth->logged_in())
+		{
+			redirect('auth/login', 'refresh');
+		}
+		else
+		{
+			redirect($_SERVER['HTTP_REFERER'], 'refresh');
 		}
 	}
 
-	/**
-	 * Log the user in
-	 */
+
 	public function login()
 	{
-		$this->data['title'] = $this->lang->line('login_heading');
 
 		// validate form input
-		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
-		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
+		$this->form_validation->set_rules('identity', $this->lang->line('login_identity_label'), 'required');
+		$this->form_validation->set_rules('password', $this->lang->line('login_password_label'), 'required');
 
 		if ($this->form_validation->run() === TRUE)
 		{
-			// check to see if the user is logging in
-			// check for "remember me"
-			$remember = (bool)$this->input->post('remember');
+			// check to see if the user is logging in check for "remember me"
+			$remember = (bool) $this->input->post('remember');
 
 			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
 			{
-				//if the login is successful
-				//redirect them back to the home page
+				// if the login is successful redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect('/', 'refresh');
 			}
 			else
 			{
-				// if the login was un-successful
-				// redirect them back to the login page
+				// if the login was un-successful redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				// use redirects instead of loading views for compatibility with MY_Controller libraries
+				redirect('auth/login', 'refresh');
 			}
 		}
 		else
 		{
-			// the user is not logging in so display the login page
-			// set the flash data error message if there is one
+			// the user is not logging in so display the login page set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-			$this->data['identity'] = array('name' => 'identity',
-				'id' => 'identity',
-				'type' => 'text',
-				'value' => $this->form_validation->set_value('identity'),
-			);
-			$this->data['password'] = array('name' => 'password',
-				'id' => 'password',
-				'type' => 'password',
+			$this->data['identity'] = array(
+				'type'        => 'text',
+				'name'        => 'identity',
+				'id'          => 'identity',
+				'value'       => $this->form_validation->set_value('identity'),
+				'placeholder' => 'Email',
+				'class'       => 'form-control'
 			);
 
-			$this->_render_page('auth/login', $this->data);
+			$this->data['password'] = array(
+				'type'        => 'password',
+				'name'        => 'password',
+				'id'          => 'password',
+				'placeholder' => 'Password',
+				'class'       => 'form-control'
+			);
+
+			$this->data['meta_title'] = $this->lang->line('login_heading');
+			$this->data['content'] = 'login';
+
+			//
+			$this->render();
 		}
 	}
+
 
 	/**
 	 * Log the user out
@@ -849,25 +860,29 @@ class Auth extends MY_Controller
 		}
 	}
 
-	/**
-	 * @param string     $view
-	 * @param array|null $data
-	 * @param bool       $returnhtml
-	 *
-	 * @return mixed
-	 */
-	public function _render_page($view, $data = NULL, $returnhtml = FALSE)//I think this makes more sense
+
+
+	public function render()
 	{
-
-		$this->viewdata = (empty($data)) ? $this->data : $data;
-
-		$view_html = $this->load->view($view, $this->viewdata, $returnhtml);
-
-		// This will return html on 3rd argument being true
-		if ($returnhtml)
+		//
+		if ( ! isset($this->data['meta_title']) OR empty($this->data['meta_title']))
 		{
-			return $view_html;
+			$this->data['meta_title'] = $this->data['title'];
 		}
-	}
+		else
+		{
+			$this->data['meta_title'] = $this->data['title'] . ' &bull; ' . $this->data['meta_title'];
+		}
 
+		//
+		$this->data['tpl_header'] = $this->parser->parse('auth/_template/header', $this->data, TRUE);
+		//
+		$this->data['tpl_content'] = $this->parser->parse('auth/' . $this->data['content'], $this->data, TRUE);
+		//
+		$this->data['tpl_footer'] = $this->parser->parse('auth/_template/footer', $this->data, TRUE);
+
+		// Build page
+		$this->data['data'] = &$this->data;
+		$this->parser->parse('auth/_template/render', $this->data);
+	}
 }
