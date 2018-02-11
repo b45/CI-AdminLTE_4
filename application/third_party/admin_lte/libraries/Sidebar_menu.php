@@ -13,20 +13,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * HTML Sidebar Menu Generating Class
  *
  *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	HTML Sidebar Menu
- * @author		Emmanuel CAMPAIT
- * @link		https://domprojects.com
+ * @package    CodeIgniter
+ * @subpackage Libraries
+ * @category   HTML Sidebar Menu
+ * @author     Emmanuel CAMPAIT
+ * @link       https://domprojects.com
  */
 class Sidebar_menu
 {
+	private $CI;
+
 	/**
 	 * Sidebar menu template
 	 *
 	 * @var array
 	 */
 	public $template = NULL;
+
+	/**
+	 * Newline setting
+	 *
+	 * @var string
+	 */
+	public $newline = "\n";
 
 	/**
 	 * Set the template from the sidebar menu config file if it exists
@@ -42,6 +51,9 @@ class Sidebar_menu
 			$this->template[$key] = $val;
 		}
 
+		//
+		$this->CI =& get_instance();
+
 		log_message('info', 'Sidebar_menu Class Initialized');
 	}
 
@@ -53,7 +65,7 @@ class Sidebar_menu
 	 * @param	mixed	$sidebar_menu_data
 	 * @return	string
 	 */
-	public function generate($args = array())
+	public function generate($args)
 	{
 		if ( ! is_array($args))
 		{
@@ -64,52 +76,48 @@ class Sidebar_menu
 			// Compile and validate the template date
 			$this->_compile_template();
 
-			// Get router class and method
-			$router_class = $this->_get_router_class();
-			$router_method = $this->_get_router_method();
-
 			// Build the sidebar menu!
 
-			$out = $this->template['menu_open'];
+			$out = $this->template['menu_open'] . $this->newline;
 
 			foreach ($args as $header => $header_value)
 			{
-				$out .= $this->template['menu_header_open'] . lang($header) . $this->template['menu_header_close'];
+				$out .= $this->template['menu_header_open'] . lang($header) . $this->template['menu_header_close'] . $this->newline;
 
 				foreach ($header_value as $menu_key => $menu_value)
 				{
-					$active_menu = ($router_class == $menu_value['router']) ? $this->template['elem_active'] : $this->template['elem_noactive'];
+					$active_menu = ($this->_get_router_class() == $menu_value['router']) ? $this->template['elem_active'] : $this->template['elem_noactive'];
 
 					if ($menu_value['url'] === FALSE && is_array($menu_value['submenu']))
 					{
 						$out .= '<li class="treeview ' . $active_menu . '">';
 						$out .= '<a href="#">' . $menu_value['icon'] . ' <span>' . lang($menu_key) . '</span>';
 						$out .= '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>';
-						$out .= '</a>';
-						$out .= '<ul class="treeview-menu">';
+						$out .= '</a>' . $this->newline;
+						$out .= '<ul class="treeview-menu">' . $this->newline;
 
 						foreach ($menu_value['submenu'] as $submenu_key => $submenu_value)
 						{
-							$active_submenu = ($router_method == $submenu_value['router']) ? $this->template['elem_active'] : $this->template['elem_noactive'];
+							$active_submenu = ($this->_get_router_method() == $submenu_value['router']) ? $this->template['elem_active'] : $this->template['elem_noactive'];
 
 							$out .= '<li class="' . $active_submenu . '">';
 							$out .= '<a href="' . site_url($submenu_value['url']) . '">' . $submenu_value['icon'] . ' ' . lang($submenu_key) . '</a>';
-							$out .= '</li>';
+							$out .= '</li>' . $this->newline;
 						}
 
-						$out .= '</ul>';
-						$out .= '</li>';
+						$out .= '</ul>' . $this->newline;
+						$out .= '</li>' . $this->newline;
 					}
 					else
 					{
 						$out .= '<li class="' . $active_menu . '">';
 						$out .= '<a href="' . site_url($menu_value['url']) . '">' . $menu_value['icon'] . ' <span>' . lang($menu_key) . '</span></a>';
-						$out .= '</li>';
+						$out .= '</li>' . $this->newline;
 					}
 				}
 			}
 
-			$out .= $this->template['menu_close'];
+			$out .= $this->template['menu_close'] . $this->newline;
 
 			return $out;
 		}
@@ -124,9 +132,7 @@ class Sidebar_menu
 	 */
 	protected function _get_router_class()
 	{
-		$CI =& get_instance();
-
-		return $CI->router->fetch_class();
+		return $this->CI->router->fetch_class();
 	}
 
 	// --------------------------------------------------------------------
@@ -138,9 +144,7 @@ class Sidebar_menu
 	 */
 	protected function _get_router_method()
 	{
-		$CI =& get_instance();
-
-		return $CI->router->fetch_method();
+		return $this->CI->router->fetch_method();
 	}
 
 	// --------------------------------------------------------------------
@@ -160,7 +164,7 @@ class Sidebar_menu
 
 		$this->temp = $this->_default_template();
 
-		foreach (array('menu_open', 'menu_close', 'menu_header_open', 'menu_header_close') as $val)
+		foreach (array('menu_open', 'menu_close', 'menu_header_open', 'menu_header_close', 'elem_active', 'elem_noactive') as $val)
 		{
 			if ( ! isset($this->template[$val]))
 			{

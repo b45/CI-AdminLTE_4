@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Configuration extends Backend
-{
+class Configuration extends Backend {
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -18,7 +18,10 @@ class Configuration extends Backend
 
 	public function index()
 	{
-		//
+		// Title
+		$this->data['meta_title'] = $this->data['page_title'];
+
+		// Breadcrumbs
 		$this->data['array_breadcrumbs'] = array(
 			$this->data['page_home']  => 'backend',
 			$this->data['page_title'] => 'backend/configuration'
@@ -53,7 +56,7 @@ class Configuration extends Backend
 		//
 		$subtitle = lang('lang_interface');
 
-		//
+		// Breadcrumbs
 		$this->data['array_breadcrumbs'] = array(
 			$this->data['page_home']  => 'backend',
 			$this->data['page_title'] => 'backend/configuration',

@@ -62,18 +62,10 @@ class Backend extends MY_Controller
 		$this->data = array();
 
 		//
-		if (in_array($_SERVER['HTTP_HOST'], $this->config->item('host_dev'), TRUE))
-		{
-			$source = 'internal';
-			$dns_prefetch = NULL;
-		}
-		else
-		{
-			$source = 'external';
-			$dns_prefetch = insert_link_tag($this->config->item('array_dns_prefetch'), $source, 'dns-prefetch');
-		}
-		$this->data['dns_prefetch'] = $dns_prefetch;
-		$this->data['stylesheet'] = insert_link_tag($this->config->item('array_stylesheet'), $source, 'stylesheet');
+		$source = (in_array($_SERVER['HTTP_HOST'], $this->config->item('host_dev'), TRUE)) ? 'internal' : 'external';
+
+		$this->data['dns_prefetch']    = insert_link_tag($this->config->item('array_dns_prefetch'), $source, 'dns-prefetch');
+		$this->data['stylesheet']      = insert_link_tag($this->config->item('array_stylesheet'), $source, 'stylesheet');
 		$this->data['javascript_body'] = insert_javascript($this->config->item('array_javascript_body'), $source);
 
 		// Get user login infos
@@ -82,7 +74,6 @@ class Backend extends MY_Controller
 
 		//
 		$this->data['charset']  = $this->config->item('charset');
-		$this->data['title']    = $this->config->item('title');
 		$this->data['title_sm'] = $this->config->item('title_sm');
 		$this->data['title_lg'] = $this->config->item('title_lg');
 		$this->data['assets']   = base_url($this->config->item('assets_backend'));
@@ -90,7 +81,7 @@ class Backend extends MY_Controller
 		$this->data['picture_users'] = base_url($this->config->item('picture_users'));
 
 		//
-		$this->data['content_header_breadcrumbs'] = '';
+		$this->data['content_header_breadcrumbs'] = NULL;
 
 		//
 		$this->data['sidebar_menu'] = $this->sidebar_menu->generate($this->config->item('array_sidebar_menu'));
@@ -102,11 +93,11 @@ class Backend extends MY_Controller
 		//
 		if ( ! isset($this->data['meta_title']) OR empty($this->data['meta_title']))
 		{
-			$this->data['meta_title'] = $this->data['title'];
+			$this->data['meta_title'] = $this->config->item('title');
 		}
 		else
 		{
-			$this->data['meta_title'] = $this->data['title'] . ' &bull; ' . $this->data['meta_title'];
+			$this->data['meta_title'] = $this->config->item('title') . ' &bull; ' . $this->data['meta_title'];
 		}
 
 		//

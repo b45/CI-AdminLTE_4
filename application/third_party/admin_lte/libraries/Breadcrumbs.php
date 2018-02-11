@@ -13,11 +13,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * HTML Breadcrumbs Generating Class
  *
  *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	HTML Breadcrumbs
- * @author		Emmanuel CAMPAIT
- * @link		https://domprojects.com
+ * @package    CodeIgniter
+ * @subpackage Libraries
+ * @category   HTML Breadcrumbs
+ * @author     Emmanuel CAMPAIT
+ * @link       https://domprojects.com
  */
 class Breadcrumbs
 {
@@ -30,6 +30,12 @@ class Breadcrumbs
 	 */
 	public $template = NULL;
 
+	/**
+	 * Newline setting
+	 *
+	 * @var string
+	 */
+	public $newline = "\n";
 
 	/**
 	 * Set the template from the breadcrumbs config file if it exists
@@ -69,7 +75,7 @@ class Breadcrumbs
 
 	// --------------------------------------------------------------------
 
-	public function set_elements($args = array())
+	public function set_elements($args)
 	{
 		if ( ! is_array($args))
 		{
@@ -103,7 +109,7 @@ class Breadcrumbs
 
 			// Build the breadcrumbs!
 
-			$out = $this->template['tag_open'];
+			$out = $this->template['tag_open'] . $this->newline;
 
 			foreach ($this->breadcrumbs as $key => $value)
 			{
@@ -111,15 +117,15 @@ class Breadcrumbs
 
 				if (end($keys) == $key)
 				{
-					$out .= $this->template['crumb_active'] . $value['page'] . $this->template['crumb_close'];
+					$out .= $this->template['crumb_active'] . $value['page'] . $this->template['crumb_close'] . $this->newline;
 				}
 				else
 				{
-					$out .= $this->template['crumb_open'] . '<a href="' . $value['href'] . '">' . $value['page'] . '</a>' . $this->template['crumb_close'];
+					$out .= $this->template['crumb_open'] . '<a href="' . $value['href'] . '">' . $value['page'] . '</a>' . $this->template['crumb_close'] . $this->newline;
 				}
 			}
 
-			$out .= $this->template['tag_close'];
+			$out .= $this->template['tag_close'] . $this->newline;
 
 			// Clear breadcrumbs class properties before generating the breadcrumbs
 			$this->clear();

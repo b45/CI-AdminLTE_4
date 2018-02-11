@@ -1,20 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends Backend
-{
+class Dashboard extends Backend {
+
 	public function __construct()
 	{
 		parent::__construct();
 
 		//
-		$this->data['page_home']  = lang('lang_dashboard');
+		$this->data['page_home'] = lang('lang_dashboard');
 	}
 
 
 	public function index()
 	{
-		//
+		// Title
+		$this->data['meta_title'] = $this->data['page_home'];
+
+		// Breadcrumbs
 		$this->data['array_breadcrumbs'] = array(
 			$this->data['page_home'] => 'backend'
 		);

@@ -8,6 +8,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['array_stylesheet'] = array(
+	'font-source-sans-pro' => array(
+		'internal' => array(
+			'url'         => 'https://fonts.googleapis.com',
+			'src'         => 'css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
+			'integrity'   => NULL,
+			'crossorigin' => NULL
+		),
+		'external' => array(
+			'url'         => 'https://fonts.googleapis.com',
+			'src'         => 'css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
+			'integrity'   => NULL,
+			'crossorigin' => NULL
+		)
+	),
 	'font-awesome' => array(
 		'internal' => array(
 			'url'         => '{assets}',
@@ -246,7 +260,7 @@ $config['array_dns_prefetch'] = array(
 	),
 	'googleapis' => array(
 		'internal' => array(
-
+			'url' => 'https://fonts.googleapis.com'
 		),
 		'external' => array(
 			'url' => 'https://fonts.googleapis.com'

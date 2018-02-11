@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Task extends Backend
-{
+class Task extends Backend {
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -15,7 +15,10 @@ class Task extends Backend
 
 	public function index()
 	{
-		//
+		// Title
+		$this->data['meta_title'] = $this->data['page_title'];
+
+		// Breadcrumbs
 		$this->data['array_breadcrumbs'] = array(
 			$this->data['page_home']  => 'backend',
 			$this->data['page_title'] => 'backend/task'
@@ -35,7 +38,7 @@ class Task extends Backend
 		//
 		$subtitle = lang('lang_read');
 
-		//
+		// Breadcrumbs
 		$this->data['array_breadcrumbs'] = array(
 			$this->data['page_home']  => 'backend',
 			$this->data['page_title'] => 'backend/task',
