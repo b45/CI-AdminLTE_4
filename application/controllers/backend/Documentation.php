@@ -31,4 +31,29 @@ class Documentation extends Backend {
 		//
 		$this->render();
 	}
+
+
+	public function test()
+	{
+		$this->form_validation->set_rules('valeur1', 'valeur1', 'required');
+		$this->form_validation->set_rules('valeur2', 'valeur2', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			echo validation_errors();
+		}
+		else
+		{
+			if ($this->input->is_ajax_request())
+			{
+				$return = array(
+					"valeur1" => $this->input->post('valeur1', TRUE),
+					"valeur2" => $this->input->post('valeur2', TRUE),
+					"csrf"    => $this->security->get_csrf_hash()
+				);
+
+				echo json_encode($return);
+			}
+		}
+	}
 }

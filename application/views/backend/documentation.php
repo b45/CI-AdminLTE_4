@@ -11,3 +11,18 @@ echo wg_small_box('bg-aqua', '<i class="fa fa-shopping-cart"></i>', '150', 'New 
 echo ui_alert('alert-danger', '<i class="icon fa fa-ban"></i>', 'Alert', 'Danger alert preview. This alert is dismissable.');
 
 echo ui_callout('alert-danger', 'I am a danger callout', 'There is a problem that we need to fix.');
+
+?>
+
+<hr>
+
+<p>test</p>
+
+<form>
+	<input type="text" id="input1" name="input1" value="valeur1">
+	<input type="text" id="input2" name="input2" value="valeur2">
+	<input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" id="csrf" value="<?= $this->security->get_csrf_hash(); ?>">
+	<button id="submit">CSRF with AJAX</button>
+</form>
+
+<div id="result"></div>
