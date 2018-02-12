@@ -116,6 +116,8 @@ class Backend extends MY_Controller
 		//
 		$this->data['tpl_footer'] = $this->parser->parse('backend/_template/footer', $this->data, TRUE);
 		//
+		$this->data['tpl_footer_scripts'] = $this->parser->parse('backend/_template/footer_scripts', $this->data, TRUE);
+		//
 		$this->data['tpl_control_sidebar'] = $this->parser->parse('backend/_template/control_sidebar', $this->data, TRUE);
 
 		// Build page

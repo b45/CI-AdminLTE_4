@@ -40,7 +40,14 @@ class Documentation extends Backend {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			echo validation_errors();
+			if ($this->input->is_ajax_request())
+			{
+				echo validation_errors();
+			}
+			else
+			{
+				
+			}
 		}
 		else
 		{
@@ -53,6 +60,14 @@ class Documentation extends Backend {
 				);
 
 				echo json_encode($return);
+			}
+			else
+			{
+				//
+				$this->data['content_header_title'] = content_header_title($this->data['page_title']);
+				$this->data['content'] = 'documentation';
+				//
+				$this->render();
 			}
 		}
 	}

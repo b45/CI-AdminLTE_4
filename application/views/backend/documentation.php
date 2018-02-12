@@ -18,11 +18,12 @@ echo ui_callout('alert-danger', 'I am a danger callout', 'There is a problem tha
 
 <p>test</p>
 
-<form>
+<?= form_open('backend/documentation/test', array('id' => 'myform')); ?>
 	<input type="text" id="input1" name="input1" value="valeur1">
 	<input type="text" id="input2" name="input2" value="valeur2">
 	<input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" id="csrf" value="<?= $this->security->get_csrf_hash(); ?>">
-	<button id="submit">CSRF with AJAX</button>
-</form>
+	<?= form_button(array('type' => 'submit', 'name' => 'submit', 'id' => 'submit', 'content' => 'CSRF with AJAX')); ?>
+<?= form_close(); ?>
+
 
 <div id="result"></div>
