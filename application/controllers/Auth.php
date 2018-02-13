@@ -8,7 +8,7 @@ class Auth extends MY_Controller
 		parent::__construct();
 
 		// Load ressource
-		$this->load->config('ci_elements');
+		$this->load->config('lte_elements');
 		$this->load->library(array('ion_auth'));
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));

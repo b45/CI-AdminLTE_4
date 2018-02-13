@@ -8,17 +8,20 @@ class MY_Controller extends CI_Controller
 		parent::__construct();
 
 		//
-		if (ini_get('date.timezone') == '')
-		{
-			date_default_timezone_set('Europe/Paris');
-		}
-
+		$this->load->add_package_path(APPPATH . 'third_party/app/');
+		$this->load->config('app_config');
 		//
 		$this->load->add_package_path(APPPATH . 'third_party/admin_lte/');
-		$this->load->config('ci_config');
+		$this->load->config('lte_config');
 
 		//
 		$this->load->database();
+
+		//
+		if (ini_get('date.timezone') == '')
+		{
+			date_default_timezone_set($this->config->item('timezone'));
+		}
 
 		//
 		$this->output->set_header('Cache-Control: public, max-age=0');
@@ -49,11 +52,11 @@ class Backend extends MY_Controller
         }
 
 		// Load ressource
-		$this->load->config('ci_elements');
-		$this->load->config('ci_sidebar_menu');
+		$this->load->config('lte_elements');
+		$this->load->config('lte_sidebar_menu');
 		$this->load->library(array('breadcrumbs', 'sidebar_menu'));
-		$this->load->helper('adminlte');
-		$this->load->model('user_model');
+		$this->load->helper(array('adminlte'));
+		$this->load->model(array('user_model'));
 
 		// Load language file
 		$this->lang->load(array('adminlte'));

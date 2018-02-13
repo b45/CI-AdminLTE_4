@@ -31,34 +31,29 @@ $config['index_page'] = '';
 
 /*
 | -------------------------------------------------------------------------
-| Title
+| Timezone
 | -------------------------------------------------------------------------
 |
 */
-$config['title'] = 'AdminLTE';
-$config['title_sm'] = '%sA%sLT';
-$config['title_lg'] = '%sAdmin%sLTE';
+$config['timezone'] = 'Europe/Paris';
 
 /*
-| -------------------------------------------------------------------------
-| Theme
-| -------------------------------------------------------------------------
+|--------------------------------------------------------------------------
+| Error Logging Threshold
+|--------------------------------------------------------------------------
+|
+| 0 = Disables logging, Error logging TURNED OFF
+| 1 = Error Messages (including PHP errors)
+| 2 = Debug Messages
+| 3 = Informational Messages
+| 4 = All Messages
 |
 */
-$config['theme_backend'] = 'skin-blue';
-
-$config['theme_frontend'] = '';
-
-/*
-| -------------------------------------------------------------------------
-| Directory
-| -------------------------------------------------------------------------
-|
-*/
-$config['assets_backend'] = 'assets/backend';
-
-$config['assets_frontend'] = 'assets/frontend';
-
-$config['upload'] = 'upload';
-
-$config['picture_users'] = 'upload/pic_users';
+if (ENVIRONMENT === 'development' OR ENVIRONMENT === 'testing')
+{
+	$config['log_threshold'] = array(1, 2);
+}
+else 
+{
+	$config['log_threshold'] = 1;
+}
