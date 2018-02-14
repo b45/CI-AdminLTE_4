@@ -18,7 +18,7 @@ class MY_Controller extends CI_Controller
 		$this->load->database();
 
 		//
-		if (ini_get('date.timezone') == '')
+		if (ini_get('date.timezone') === '')
 		{
 			date_default_timezone_set($this->config->item('timezone'));
 		}

@@ -8,12 +8,26 @@ class Dashboard extends Backend {
 		parent::__construct();
 
 		//
+		$this->load->helper('number');
+		$this->load->model('resources_model');
+
+		//
 		$this->data['page_home'] = lang('lang_dashboard');
 	}
 
 
 	public function index()
 	{
+		//
+		$this->data['disk_totalspace'] = byte_format($this->resources_model->disk_totalspace(), 3);
+		$this->data['disk_freespace']  = byte_format($this->resources_model->disk_freespace(), 3);
+		$this->data['disk_usespace']   = byte_format($this->resources_model->disk_usespace(), 3);
+		$this->data['disk_usepercent'] = $this->resources_model->disk_usepercent();
+		//
+		$this->data['memory_usage']         = byte_format($this->resources_model->memory_usage(), 3);
+		$this->data['memory_peak_usage']    = byte_format($this->resources_model->memory_peak_usage(), 3);
+		$this->data['memory_usage_percent'] = $this->resources_model->memory_usage_percent();
+
 		// Title
 		$this->data['meta_title'] = $this->data['page_home'];
 

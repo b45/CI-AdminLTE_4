@@ -22,7 +22,7 @@ SetEnv CI_ENV development
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 
-	RewriteCond $1 !^(index\.php|robots\.txt)
+	RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.xml)
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 
