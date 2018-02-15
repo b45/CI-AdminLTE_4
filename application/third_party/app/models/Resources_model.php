@@ -8,41 +8,28 @@ class Resources_model extends CI_Model {
 		parent::__construct();
 	}
 
-
-	public function disk_totalspace($dir = DIRECTORY_SEPARATOR)
+	/**
+	 * Disk informations
+	 */
+	public function get_disk_total_space($directory = DIRECTORY_SEPARATOR)
 	{
-		return disk_total_space($dir);
+		return disk_total_space($directory);
 	}
 
 
-	public function disk_freespace($dir = DIRECTORY_SEPARATOR)
+	public function get_disk_free_space($directory = DIRECTORY_SEPARATOR)
 	{
-		return disk_free_space($dir);
+		return disk_free_space($directory);
 	}
 
 
-	public function disk_usespace($dir = DIRECTORY_SEPARATOR)
+	public function get_disk_use_space($directory = DIRECTORY_SEPARATOR)
 	{
-		return $this->disk_totalspace($dir) - $this->disk_freespace($dir);
+		return $this->get_disk_total_space($directory) - $this->get_disk_free_space($directory);
 	}
 
 
-	public function disk_freepercent($dir = DIRECTORY_SEPARATOR, $display_unit = FALSE)
-	{
-		if ($display_unit === FALSE)
-		{
-			$unit = NULL;
-		}
-		else
-		{
-			$unit = ' %';
-		}
-
-		return round(($this->disk_freespace($dir) * 100) / $this->disk_totalspace($dir), 0) . $unit;
-	}
-
-
-	public function disk_usepercent($dir = DIRECTORY_SEPARATOR, $display_unit = FALSE)
+	public function get_disk_free_percent($directory = DIRECTORY_SEPARATOR, $display_unit = FALSE)
 	{
 		if ($display_unit === FALSE)
 		{
@@ -53,10 +40,28 @@ class Resources_model extends CI_Model {
 			$unit = ' %';
 		}
 
-		return round(($this->disk_usespace($dir) * 100) / $this->disk_totalspace($dir), 0) . $unit;
+		return round(($this->get_disk_free_space($directory) * 100) / $this->get_disk_total_space($directory), 0) . $unit;
 	}
 
 
+	public function get_disk_use_percent($directory = DIRECTORY_SEPARATOR, $display_unit = FALSE)
+	{
+		if ($display_unit === FALSE)
+		{
+			$unit = NULL;
+		}
+		else
+		{
+			$unit = ' %';
+		}
+
+		return round(($this->get_disk_use_space($directory) * 100) / $this->get_disk_total_space($directory), 0) . $unit;
+	}
+
+
+	/**
+	 * Memory informations
+	 */
 	public function memory_peak_usage($real = FALSE)
 	{
 		if ($real)

@@ -19,10 +19,10 @@ class Dashboard extends Backend {
 	public function index()
 	{
 		//
-		$this->data['disk_totalspace'] = byte_format($this->resources_model->disk_totalspace(), 3);
-		$this->data['disk_freespace']  = byte_format($this->resources_model->disk_freespace(), 3);
-		$this->data['disk_usespace']   = byte_format($this->resources_model->disk_usespace(), 3);
-		$this->data['disk_usepercent'] = $this->resources_model->disk_usepercent();
+		$this->data['disk_total_space'] = byte_format($this->resources_model->get_disk_total_space(), 3);
+		$this->data['disk_free_space']  = byte_format($this->resources_model->get_disk_free_space(), 3);
+		$this->data['disk_use_space']   = byte_format($this->resources_model->get_disk_use_space(), 3);
+		$this->data['disk_use_percent'] = $this->resources_model->get_disk_use_percent();
 		//
 		$this->data['memory_usage']         = byte_format($this->resources_model->memory_usage(), 3);
 		$this->data['memory_peak_usage']    = byte_format($this->resources_model->memory_peak_usage(), 3);
