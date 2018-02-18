@@ -18,15 +18,17 @@ class Dashboard extends Backend {
 
 	public function index()
 	{
-		//
-		$this->data['disk_total_space'] = byte_format($this->resources_model->get_disk_total_space(), 3);
-		$this->data['disk_free_space']  = byte_format($this->resources_model->get_disk_free_space(), 3);
-		$this->data['disk_use_space']   = byte_format($this->resources_model->get_disk_use_space(), 3);
+		// Get disk informations
+		$this->data['disk_total']       = byte_format($this->resources_model->get_disk_total(), 3);
+		$this->data['disk_use']         = byte_format($this->resources_model->get_disk_use(), 3);
+		$this->data['disk_free']        = byte_format($this->resources_model->get_disk_free(), 3);
 		$this->data['disk_use_percent'] = $this->resources_model->get_disk_use_percent();
-		//
-		$this->data['memory_usage']         = byte_format($this->resources_model->memory_usage(), 3);
-		$this->data['memory_peak_usage']    = byte_format($this->resources_model->memory_peak_usage(), 3);
-		$this->data['memory_usage_percent'] = $this->resources_model->memory_usage_percent();
+
+		// Get memory informations
+		$this->data['memory_total']       = byte_format($this->resources_model->get_memory_total(), 3);
+		$this->data['memory_use']         = byte_format($this->resources_model->get_memory_use(), 3);
+		$this->data['memory_free']        = byte_format($this->resources_model->get_memory_free(), 3);
+		$this->data['memory_use_percent'] = $this->resources_model->get_memory_use_percent();
 
 		// Title
 		$this->data['meta_title'] = $this->data['page_home'];
