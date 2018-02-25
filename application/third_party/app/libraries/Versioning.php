@@ -10,12 +10,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * HTML Breadcrumbs Generating Class
+ * Versioning Generating Class
  *
  *
  * @package    CodeIgniter
  * @subpackage Libraries
- * @category   HTML Breadcrumbs
+ * @category   Versioning
  * @author     Emmanuel CAMPAIT
  * @link       https://domprojects.com
  */
@@ -24,7 +24,7 @@ class Versioning
 	private $CI;
 
 	/**
-	 * Breadcrumbs layout template
+	 * Versioning layout template
 	 *
 	 * @var array
 	 */
@@ -38,7 +38,16 @@ class Versioning
 	public $unknow = 'lang_unknow';
 
 	/**
-	 * Set the template from the breadcrumbs config file if it exists
+	 * Result source file
+	 *
+	 * @var array
+	 */
+	public $result = array();
+
+		
+
+	/**
+	 * Set the template from the versioning config file if it exists
 	 *
 	 * @param	array	$config	(default: array())
 	 * @return	void
@@ -142,6 +151,28 @@ class Versioning
 	public function get_db()
 	{
 		return $this->CI->db->version();
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 *
+	 */
+	public function get_source_version()
+	{
+		if (($handle = @fopen('https://raw.githubusercontent.com/domProjects/CI-AdminLTE_4/master/VERSION.md', 'r')) !== FALSE)
+		{
+			ini_set('auto_detect_line_endings', TRUE);
+
+			while (($data = fgetcsv($handle, 500, '=')) !== FALSE)
+			{
+				$result[$data[0]] = $data[1];
+			}
+
+			ini_set('auto_detect_line_endings', FALSE);
+
+			return $result;
+		}
 	}
 
 	// --------------------------------------------------------------------

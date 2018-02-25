@@ -24,6 +24,7 @@ class Update extends Backend {
 		$this->data['php_version']    = $this->versioning->get_php();
 		$this->data['zend_version']   = $this->versioning->get_zend();
 		$this->data['db_version']     = $this->versioning->get_db();
+		$this->data['source_version'] = $this->versioning->get_source_version();
 
 		$this->data['db_platform']    = $this->db->platform();
 

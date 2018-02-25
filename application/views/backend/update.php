@@ -72,44 +72,30 @@ $this->table->clear();
 
 <?php
 
-$result = array();
-
-ini_set('auto_detect_line_endings', TRUE);
-
-if (($handle = fopen('https://raw.githubusercontent.com/domProjects/CI-AdminLTE_4/master/VERSION.md','r')) !== FALSE)
-{
-	while (($data = fgetcsv($handle, 500, '=')) !== FALSE)
-	{
-		$result[$data[0]] = $data[1];
-	}
-}
-
-ini_set('auto_detect_line_endings', FALSE);
-
 $array_server_version = array(
 	array(
 		'name'      => 'CodeIgniter',
 		'installed' => CI_VERSION,
 		'minimum'   => NULL,
-		'available' => $result['ver_codeigniter']
+		'available' => $source_version['ver_codeigniter']
 	),
 	array(
 		'name'      => 'AdminLTE',
 		'installed' => ADMINLTE_VERSION,
 		'minimum'   => NULL,
-		'available' => $result['ver_adminlte']
+		'available' => $source_version['ver_adminlte']
 	),
 	array(
 		'name'      => 'Bootstrap',
 		'installed' => BOOTSTRAP_VERSION,
 		'minimum'   => NULL,
-		'available' => $result['ver_bootstrap']
+		'available' => $source_version['ver_bootstrap']
 	),
 	array(
 		'name'      => 'jQuery',
 		'installed' => JQUERY_VERSION,
 		'minimum'   => NULL,
-		'available' => $result['ver_jquery']
+		'available' => $source_version['ver_jquery']
 	)
 );
 
