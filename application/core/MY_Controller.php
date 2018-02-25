@@ -7,9 +7,12 @@ class MY_Controller extends CI_Controller {
 	{
 		parent::__construct();
 
+		require_once(APPPATH . 'third_party/app/config/app_version.php');
+
 		//
 		$this->load->add_package_path(APPPATH . 'third_party/app/');
 		$this->load->config('app_config');
+
 		//
 		$this->load->add_package_path(APPPATH . 'third_party/admin_lte/');
 		$this->load->config('lte_config');
@@ -84,9 +87,6 @@ class Backend extends MY_Controller {
 		$this->data['picture_users'] = base_url($this->config->item('picture_users'));
 
 		//
-		$this->data['content_header_breadcrumbs'] = NULL;
-
-		//
 		$this->data['sidebar_menu'] = $this->sidebar_menu->generate($this->config->item('array_sidebar_menu'));
 	}
 
@@ -108,6 +108,10 @@ class Backend extends MY_Controller {
 		{
 			$this->breadcrumbs->set_elements($this->data['array_breadcrumbs']);
 			$this->data['content_header_breadcrumbs'] = $this->breadcrumbs->generate();
+		}
+		else
+		{
+			$this->data['content_header_breadcrumbs'] = NULL;
 		}
 
 		//

@@ -15,6 +15,18 @@ class Update extends Backend {
 
 	public function index()
 	{
+		//
+		$this->load->library('table');
+		$this->load->library('versioning');
+
+		//
+		$this->data['apache_version'] = $this->versioning->get_apache();
+		$this->data['php_version']    = $this->versioning->get_php();
+		$this->data['zend_version']   = $this->versioning->get_zend();
+		$this->data['db_version']     = $this->versioning->get_db();
+
+		$this->data['db_platform']    = $this->db->platform();
+
 		// Title
 		$this->data['meta_title'] = $this->data['page_title'];
 
