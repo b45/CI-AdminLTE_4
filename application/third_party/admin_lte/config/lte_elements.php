@@ -87,8 +87,8 @@ $config['array_stylesheet'] = array(
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
-			'src'         => 'admin-lte/2.4.2/css/AdminLTE.min.css',
-			'integrity'   => 'sha256-sZVMQjkm0Ho60NDzV4Ot0OTBAK7UcaqkQOxLkTT93kQ=',
+			'src'         => 'admin-lte/2.4.3/css/AdminLTE.min.css',
+			'integrity'   => 'sha256-7WqktPHVsROEjpu4RjXZv4E5ZHZ3HgNOVxuYSxF6Bj4=',
 			'crossorigin' => 'anonymous'
 		)
 	),
@@ -101,7 +101,7 @@ $config['array_stylesheet'] = array(
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
-			'src'         => 'admin-lte/2.4.2/css/skins/{theme}.min.css',
+			'src'         => 'admin-lte/2.4.3/css/skins/{theme}.min.css',
 			'integrity'   => 'sha256-dDi4GN+hJjMVQmkbeVpXkn3/qwQrL3oWvW8ukATCaPc=',
 			'crossorigin' => 'anonymous'
 		)
@@ -124,8 +124,8 @@ $config['array_javascript_body'] = array(
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
-			'src'         => 'jquery/3.2.1/jquery.min.js',
-			'integrity'   => 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=',
+			'src'         => 'jquery/3.3.1/jquery.min.js',
+			'integrity'   => 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=',
 			'crossorigin' => 'anonymous'
 		)
 	),
@@ -222,8 +222,8 @@ $config['array_javascript_body'] = array(
 		),
 		'external' => array(
 			'url'         => 'https://cdnjs.cloudflare.com/ajax/libs',
-			'src'         => 'admin-lte/2.4.2/js/adminlte.min.js',
-			'integrity'   => 'sha256-M/+/xbAPBtc0W7JWnReOYF+oPZq4OiOUrlP9qbv7w64=',
+			'src'         => 'admin-lte/2.4.3/js/adminlte.min.js',
+			'integrity'   => 'sha256-Q/aizhMDU+m2KQAJOfeYLCMrkltKkaNkvdGr2bcxA74=',
 			'crossorigin' => 'anonymous'
 		)
 	),
