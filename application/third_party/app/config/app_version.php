@@ -7,11 +7,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 |
 */
-const ADMINLTE_VERSION = '2.4.2';
+const ADMINLTE_VERSION = '2.4.3';
 
 const BOOTSTRAP_VERSION = '3.3.7';
 
-const JQUERY_VERSION = '3.2.1';
+const JQUERY_VERSION = '3.3.1';
 
 /*
 | -------------------------------------------------------------------------
