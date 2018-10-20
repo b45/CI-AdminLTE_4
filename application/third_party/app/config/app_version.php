@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 |
 */
-const ADMINLTE_VERSION = '2.4.3';
+const ADMINLTE_VERSION = '2.4.8';
 
 const BOOTSTRAP_VERSION = '3.3.7';
 
