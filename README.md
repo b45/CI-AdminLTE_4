@@ -1,5 +1,5 @@
 # CI-AdminLTE 4
-CodeIgniter 3.x with AdminLTE 2.4.x
+CodeIgniter 3.1.10 with AdminLTE 2.4.6
 
 ## Server Requirements
 
