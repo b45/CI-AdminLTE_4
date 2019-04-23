@@ -24,12 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</form>
 
 
-                        <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
-                        <li class="<?=active_link_controller('pemasukan')?>">
-                            <a href="<?php echo site_url('admin/pemasukan'); ?>">
-                                <i class="fa fas fa-hand-holding-usd"></i> <span>Pemasukan</span>
-                            </a>
-                        </li>
+	
 	{sidebar_menu}
 
 </section>

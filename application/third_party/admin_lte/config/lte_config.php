@@ -7,11 +7,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | -------------------------------------------------------------------------
 |
 */
-$config['title'] = 'AdminLTE';
+$config['title'] = 'NPMI_02';
 
-$config['title_sm'] = '%sA%sLT';
+$config['title_sm'] = '%sA%s02';
 
-$config['title_lg'] = '%sAdmin%sLTE';
+$config['title_lg'] = '%sAdmin%sNPMI';
 
 /*
 | -------------------------------------------------------------------------
