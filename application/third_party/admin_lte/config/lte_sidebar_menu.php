@@ -11,7 +11,7 @@ $config['array_sidebar_menu'] = array(
 	'lang_main_navigation' => array(
 		'lang_dashboard' => array(
 			'url'     => 'backend/dashboard',
-			'router'  => 'dashboard',
+			'router'  => 'Pemasukan',
 			'icon'    => '<i class="fa fa-dashboard" aria-hidden="true"></i>',
 			'submenu' => FALSE
 		),
